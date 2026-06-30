@@ -7,13 +7,26 @@ function Counter() {
     const [gameStatus, setGameStatus] = useState("In Progress");
 
     function handleIncrement() {
+       const newValue = prevCount + 1;
+       setCount(newValue);
+       if(newValue >= 5) {
+        setGameStatus("You Win!");
+       }else{ if(newValue <= -5){
+        setGameStatus("You Lose!");
+       }
        setCount(function(prevCount) {
-        return prevCount + 1;
+        return newValue;
        });
     }
     function handleDecrement() {
        setCount(function(prevCount) {
-        return prevCount - 1;
+        const newValue = prevCount - 1;
+        if (newValue >= 5) {
+            setGameStatus("You Win!");
+        } else if (newValue <= -5) {
+            setGameStatus("You Lose!");
+        }
+        return newValue;
        });
     }
 
